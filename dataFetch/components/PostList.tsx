@@ -1,5 +1,8 @@
 import React, { useContext } from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import {
+  FlatList, StyleSheet, Text, View, Image, Pressable, TextInput
+
+} from "react-native";
 import { DataContext } from "../context/DataContext";
 import { Products } from "../types/types";
 
@@ -7,15 +10,31 @@ export default function PostsList() {
   const { products } = useContext(DataContext);
 
   const renderPost = ({ item, index }: { item: Products; index: number }) => (
+
+
     <View style={styles.card}>
-      <Text style={styles.title}>
-        {index + 1}. {item.title}
+      
+
+
+
+      <Image
+        source={{ uri: item.thumbnail }}
+        style={{ width: '100%', height: 400 }}
+        resizeMode="cover"
+      />
+
+      <Text style={{ textAlign: 'center', fontSize: 30, fontWeight: 'bold' }}>
+        {item.title}
       </Text>
-      <Text>{item.category}</Text>
+      <Text>Price: ${item.price}</Text>
+      <Text>Description: {item.description}</Text>
+      <Pressable style={{ backgroundColor: 'green', height: 30, borderRadius: 10 }}>
+        <Text style={{ textAlign: 'center', fontSize: 15, fontWeight: 'bold', color: 'white' }}>Add to Cart</Text>
+      </Pressable>
     </View>
   );
 
-  
+
 
   return (
     <View style={styles.container}>
@@ -39,7 +58,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f1f1f1",
     borderRadius: 5,
   },
-  title: { 
+  title: {
     fontWeight: "bold"
-},
+  },
 });

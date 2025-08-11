@@ -6,7 +6,8 @@ export interface Products{
     price: number,
     discountedPercentage: number,
     rating: number,
-    stock: number
+    stock: number,
+    thumbnail: string
 }
 
 
